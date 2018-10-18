@@ -11,8 +11,8 @@ namespace Lab8
         static void Main(string[] args)
         {
 
-            int usernum;
-            string[] names = new string[19];
+            int usernum; 
+            string[] names = new string[19]; //name array 
             names[0] = "Mace";
             names[1] = "Ty";
             names[2] = "Mauricio";
@@ -32,7 +32,7 @@ namespace Lab8
             names[16] = "Clayton";
             names[17] = "Levi";
             names[18] = "Evan";
-            string[] hometown = new string[19];
+            string[] hometown = new string[19]; //hometwon array
             hometown[0] = "Detroit";
             hometown[1] = "Pontiac";
             hometown[2] = "Bloomfield Hills";
@@ -52,7 +52,7 @@ namespace Lab8
             hometown[16] = "Anna Arbor";
             hometown[17] = "Grosse Point";
             hometown[18] = "Waterville";
-            string[] food = new string[19];
+            string[] food = new string[19]; //food array
             food[0] = "Pizza";
             food[1] = "Pasta";
             food[2] = "Raman";
@@ -75,19 +75,27 @@ namespace Lab8
 
 
             bool exitProg = false;
-            while (exitProg == false)
+            while (exitProg == false) //while loop for the whole program
             {
-                Console.WriteLine("Welcom to our C# class. \nWhich student would you like to learn more about? (Enter a number 0-18)");
+                Console.WriteLine("Welcom to our C# class.");
 
-                while (true)
+                while (true) // while loop for student name
                 {
-                    try
+                    Console.WriteLine("Which student would you like to learn more about? (Enter a number 0 - 18)");
+                    try //try for 
                     {
-                       
+
                         usernum = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Student {0}: Would you like to know more about that student", names[usernum]);
+                        Console.WriteLine("Student {0}:", names[usernum]);
                         break;
                     }
+
+                    catch (IndexOutOfRangeException) //incase user goes out of range it catches these two exeptions
+                    {
+                        Console.WriteLine("That student doesn't exist, try agian");
+                        continue;
+                    }
+
 
                     catch (FormatException)
                     {
@@ -97,68 +105,50 @@ namespace Lab8
 
                 }
 
-                Console.WriteLine("Would you like to know more about this student? enter hometown or favoritefood ");
+                Console.WriteLine("Would you like to know more about this student? Enter hometown or favoritefood ");
                 string input = Console.ReadLine().ToLower();
-                while (true)
+                while (input != "hometown" && input != "favoritefood")// loop for the hometown/favoritefood validation
                 {
-                    if (input == "hometown")
-                    { 
-                        try
+
+                    Console.WriteLine("That data type does not exist try agian");
+
+
+                     input = Console.ReadLine().ToLower(); //reading user input
+                }
+
+                        if (input == "hometown") //if hometown it prints else food
                         {
-                          Console.WriteLine("{0} is from {1}", names[usernum], hometown[usernum]);
-                            break;
+                            Console.WriteLine("{0} is from {1}", names[usernum], hometown[usernum]);
                         }
 
-                        catch(IndexOutOfRangeException)
+                        else 
                         {
-                            Console.WriteLine("That data type does not exist");
-                            continue;
+                            Console.WriteLine("{0} favorite food is {1}", names[usernum], food[usernum]);
                         }
 
-                        
-                    }
-
-                    else if(input == "favoritefood")
-                    {
-                        try
-                        {
-                          Console.WriteLine("{0} favorite food is {1}", names[usernum], food[usernum]);
-
-                        }
-                        
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("That data type does not exist");
-                            continue;
-                        }
-
-                    }
-
-
-
-                    while (true)
+                    while (true) // while loop for the user to continue
                     {
                         Console.WriteLine("Would you like to continue y/n ?");
                         string answer = Console.ReadLine().ToLower();
 
-                        if (answer == "y")
+                        if (answer == "y") //if yes it breaks this loops and the false function runs it back to the top of the program loop
                         {
-                            exitProg = false;
+                            exitProg = false; 
                             break;
                         }
 
-                        else if (answer == "n")
+                        else if (answer == "n")//if no it breaks the loop agian but true function ends the program; n
                         {
                             exitProg = true;
-                            continue;
+                            break;
                         }
 
 
-                        else if (answer != "y" || answer != "n")
+                        else if (answer != "y" || answer != "n") //if anything other then y or n it continues to ask the user
                         {
                             Console.WriteLine("Would you like to continue y/n ?");
                             answer = Console.ReadLine();
-                            c;
+                            continue;
                         }
 
                     }
@@ -169,9 +159,9 @@ namespace Lab8
 
 
             }
-               
 
-         }
+
+        }
 
     }
-}
+
